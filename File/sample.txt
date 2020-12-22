@@ -1,1 +1,9 @@
-Hello from all of the children of planet Earth
+a = input()
+
+b = int(a)
+print(b * b, a + a)
+#if a = 3 output is 33.
+
+
+
+
