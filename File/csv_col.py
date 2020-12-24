@@ -6,8 +6,7 @@ def process(args):
         for row in file:
             result = 0
             for i in re.split(',[\s]?', row):
-                if i.isdecimal():
-                    result = result + int(i)
+                result = result + int(i)
             row = row.strip() + ', ' + str(result)
             ans.write(row + '\n')
 
