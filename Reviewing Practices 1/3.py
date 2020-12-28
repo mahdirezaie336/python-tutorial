@@ -6,6 +6,6 @@ st = set(inputs[1])
 for i in range(n):
     p = input()
     if set(p) == st:
-        print('yes')
+        print('Yes')
     else:
-        print('no')
+        print('No')
