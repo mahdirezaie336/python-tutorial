@@ -32,6 +32,43 @@ p = int(input())
 for i in range(p):
     opcode, operand1, operand2 = input().split()
 
-    # case: number of musics that a specific user bought from a specific singer
+    number = 0
     if opcode == '1':
-        
+        # case: number of musics that a specific user bought from a specific singer
+        for album in users[operand1][2]:
+            if albums[album][0] == operand2:
+                number += albums[album][2]
+    elif opcode == '2':
+        # case: number of musics that a specific user bought from a specific type
+        for album in users[operand1][2]:
+            if albums[album][1] == operand2:
+                number += albums[album][2]
+    elif opcode == '3':
+        # case: number of musics that users with specific age bought from a specific singer
+        for user in users.keys():
+            if users[user][0] == operand1:
+                for album in users[user][2]:
+                    if albums[album][0] == operand2:
+                        number += albums[album][2]
+    elif opcode == '4':
+        # case: number of musics that users with specific age bought from a specific type
+        for user in users.keys():
+            if users[user][0] == operand1:
+                for album in users[user][2]:
+                    if albums[album][1] == operand2:
+                        number += albums[album][2]
+    elif opcode == '5':
+        # case: number of musics that users from specific city bought from a specific type
+        for user in users.keys():
+            if users[user][1] == operand1:
+                for album in users[user][2]:
+                    if albums[album][0] == operand2:
+                        number += albums[album][2]
+    elif opcode == '6':
+        # case: number of musics that users from specific city bought from a specific type
+        for user in users.keys():
+            if users[user][1] == operand1:
+                for album in users[user][2]:
+                    if albums[album][1] == operand2:
+                        number += albums[album][2]
+    print(number)
