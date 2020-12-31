@@ -35,14 +35,16 @@ for i in range(p):
     number = 0
     if opcode == '1':
         # case: number of musics that a specific user bought from a specific singer
-        for album in users[operand1][2]:
-            if albums[album][0] == operand2:
-                number += albums[album][2]
+        if operand1 in users.keys():
+            for album in users[operand1][2]:
+                if albums[album][0] == operand2:
+                    number += albums[album][2]
     elif opcode == '2':
         # case: number of musics that a specific user bought from a specific type
-        for album in users[operand1][2]:
-            if albums[album][1] == operand2:
-                number += albums[album][2]
+        if operand1 in users.keys():
+            for album in users[operand1][2]:
+                if albums[album][1] == operand2:
+                    number += albums[album][2]
     elif opcode == '3':
         # case: number of musics that users with specific age bought from a specific singer
         for user in users.keys():
