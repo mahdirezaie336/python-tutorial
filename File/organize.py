@@ -17,8 +17,14 @@ def is_video(file_name):
     return False
 
 
-def copy_file(src, dst):
-    
+def copy_file(source, destination):
+    with open(source, 'rb') as src_file, open(destination, 'wb') as dst_file:
+        while (buffer := src_file.read(1024)) != b'':
+            dst_file.write(buffer)
+
+    mod_time = os.path.getmtime(source)
+    #print(destination, mod_time, ' <- ', os.path.getmtime(destination))
+    os.utime(destination, (mod_time, mod_time))
 
 
 args = sys.argv
@@ -55,4 +61,4 @@ for i in os.walk(src):
 
         dst_file_address = os.path.join(dst_file_address, src_file_name)
 
-        os.rename(src_file_address, dst_file_address)
+        copy_file(src_file_address, dst_file_address)
