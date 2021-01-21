@@ -4,6 +4,8 @@ import datetime
 
 
 def is_photo(file_name):
+    if '.' not in file_name:
+        return False
     file_type = str(file_name).lower().split('.')[-1]
     if file_type in ['jpg', 'jpeg', 'png']:
         return True
@@ -11,6 +13,8 @@ def is_photo(file_name):
 
 
 def is_video(file_name):
+    if '.' not in file_name:
+        return False
     file_type = str(file_name).lower().split('.')[-1]
     if file_type in ['mp4', 'avi', '3gp', 'mpeg', 'mkv', 'wmv', 'mov']:
         return True
