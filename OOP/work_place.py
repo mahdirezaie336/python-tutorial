@@ -7,6 +7,8 @@ class WorkPlaceIsFull(Exception):
 class Consts:
 
     BASE_PRICE = {'mine': 150, 'school': 100, 'company': 90}
+    BASE_PLACE_COST = 1
+    LEVEL_MUL = 1;
 
 
 class WorkPlace:
