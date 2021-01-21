@@ -31,16 +31,25 @@ def copy_file(source, destination):
     os.utime(destination, (acc_time, mod_time))
 
 
+def recursive_mkdir(dir_path):
+    parent = ''
+    for item in str(dir_path).split(os.sep)[0:-1]:
+        parent = os.path.join(parent, item)
+    if not os.path.exists(parent):
+        recursive_mkdir(parent)
+    os.mkdir(dir_path)
+
+
 args = sys.argv
 src = args[1]
 dst = args[2]
 # src = './file_test'
 # dst = './file_test/organized'
 if not os.path.exists(dst):
-    os.mkdir(dst)
+    recursive_mkdir(dst)
 
 for i in os.walk(src):
-    if i[0].startswith(dst):
+    if i[0].startswith(dst) and os.path.commonprefix([i[0], dst]) != dst:
         continue
     for src_file_name in i[2]:
         src_file_address = os.path.join(i[0], src_file_name)
