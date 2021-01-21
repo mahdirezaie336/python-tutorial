@@ -1,5 +1,5 @@
 class Reverse:
-    def __init__(self):
+    def __init__(self, data):
         self.data = data
         self.index = -1
 
@@ -7,8 +7,8 @@ class Reverse:
         return self
 
     def __next__(self):
-        if self.index == -1 * len(self.data):
+        if self.index < -1 * len(self.data):
             raise StopIteration
 
-        index -= 1
-        return self.data[index + 1]
+        self.index -= 1
+        return self.data[self.index + 1]
