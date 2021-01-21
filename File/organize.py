@@ -7,7 +7,7 @@ def is_photo(file_name):
     if '.' not in file_name:
         return False
     file_type = str(file_name).lower().split('.')[-1]
-    if file_type in ['jpg', 'jpeg', 'png']:
+    if file_type in ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tif', 'tiff']:
         return True
     return False
 
@@ -43,8 +43,7 @@ def recursive_mkdir(dir_path):
 args = sys.argv
 src = args[1]
 dst = args[2]
-# src = './file_test'
-# dst = './file_test/organized'
+
 if not os.path.exists(dst):
     recursive_mkdir(dst)
 
