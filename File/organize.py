@@ -23,8 +23,8 @@ def copy_file(source, destination):
             dst_file.write(buffer)
 
     mod_time = os.path.getmtime(source)
-    #print(destination, mod_time, ' <- ', os.path.getmtime(destination))
-    os.utime(destination, (mod_time, mod_time))
+    acc_time = os.path.getatime(source)
+    os.utime(destination, (acc_time, mod_time))
 
 
 args = sys.argv
@@ -36,7 +36,7 @@ if not os.path.exists(dst):
     os.mkdir(dst)
 
 for i in os.walk(src):
-    if i[0] == dst:
+    if i[0].startswith(dst):
         continue
     for src_file_name in i[2]:
         src_file_address = os.path.join(i[0], src_file_name)
