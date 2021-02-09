@@ -1,21 +1,16 @@
 import pygame
+img = pygame.image.load('draw.png')
 
+white = (255, 255, 255)
+screen = pygame.display.set_mode((640, 480))
+screen.fill((white))
 
-pygame.init()
-screen = pygame.display.set_mode((800, 600))
-pygame.display.set_caption('Testing PyGame!')
-red = (255, 0, 0)
-blue = (0, 0, 255)
+x, y = 0, 0
 
-turn = True
 while True:
-    pygame.event.pump()
-
-    if turn:
-        screen.fill(red)
-    else:
-        screen.fill(blue)
-
-    turn = not turn
+    screen.fill((white))
+    screen.blit(img,(x, y))
+    x, y = x + 1, y + 1
     pygame.display.update()
-    pygame.time.delay(200)
+    pygame.time.delay(10)
+    pygame.event.pump()
