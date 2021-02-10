@@ -14,7 +14,8 @@ class Game:
         self.ball, self.ballrect = self.load_image("sq.png")
 
     def load_image(self, image_name):
-        pass
+        image = pygame.image.load(image_name)
+        return image, image.get_rect()
 
     def move_ball(self):
         ballrect = self.ballrect.move(self.speed)
@@ -25,8 +26,12 @@ class Game:
         self.ballrect = ballrect
 
     def draw(self):
-        pass
+        self.screen.fill(self.black)
+        self.screen.blit(self.ball, (self.ballrect.left, self.ballrect.top))
+        pygame.display.update()
 
-    def handel_events(self):
-        pass
-
+    def handle_events(self):
+        while True:
+            event = pygame.event.wait()
+            if event.type == pygame.QUIT:
+                sys.exit(0)
