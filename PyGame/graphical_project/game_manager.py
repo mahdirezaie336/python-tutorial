@@ -25,15 +25,12 @@ class GameManager:
         self.snakes.append(snake)
 
     def get_cell(self, pos):
-        try:
-            return self.cells[pos[0]][pos[1]]
-        except:
-            return None
+        return self.cells[pos[0]][pos[1]]
 
     def kill(self, killed_snake):
         self.snakes.remove(killed_snake)
 
-    def get_next_fruit_pos(self): # returns tuple (x, y) that is the fruit location
+    def get_next_fruit_pos(self):  # returns tuple (x, y) that is the fruit location
         ret = -1, -1
         mx = -100
 
@@ -45,8 +42,7 @@ class GameManager:
                 for x in range(0, self.size):
                     for y in range(0, self.size):
                         if self.get_cell((x, y)).color != consts.back_color:
-                            mn = min(mn, int( abs(x-i) + abs(y-j) ))
-
+                            mn = min(mn, int(abs(x - i) + abs(y - j)))
 
                 if mn > mx:
                     mx = mn
@@ -55,4 +51,11 @@ class GameManager:
         return ret
 
     def handle(self, keys):
-        pass
+        for snake in self.snakes:
+            snake.handle(keys)
+        for snake in self.snakes:
+            snake.next_move()
+        self.turn += 1
+        if self.turn % 10 == 0:
+            fpos = self.get_next_fruit_pos()
+            self.get_cell(fpos).set_color(consts.fruit_color)

@@ -1,4 +1,7 @@
-import pygame, consts, sys
+import consts
+import pygame
+import sys
+
 from game_manager import GameManager
 from snake import Snake
 
@@ -15,14 +18,15 @@ def main():
 
     while True:
         events = pygame.event.get()
+        pygame.event.pump()
         keys = []
         for event in events:
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 keys.append(event.unicode)
-
         game.handle(keys)
+        pygame.display.update()
         pygame.time.wait(100)
 
 
