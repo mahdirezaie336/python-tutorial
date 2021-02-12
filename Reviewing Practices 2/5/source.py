@@ -43,7 +43,11 @@ class FileManager:
             self.trashed_origins[name].append(path)
 
     def find(self, name, address):
-        pass
+        result = []
+        for i in os.walk(address):
+            if name in i[2]:
+                result.append(os.path.join(i[0], name))
+        return result
 
     def restore(self, name):
         if name in self.trashed_origins:
@@ -52,3 +56,4 @@ class FileManager:
             os.rename(os.path.join(FileManager.trash_dir, name + '.' + str(index)), origin)
             if index == 0:
                 del self.trashed_origins[name]
+
