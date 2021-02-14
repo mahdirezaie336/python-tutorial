@@ -7,7 +7,7 @@ def is_photo(file_name):
     if '.' not in file_name:
         return False
     file_type = str(file_name).lower().split('.')[-1]
-    if file_type in ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tif', 'tiff']:
+    if file_type in ['jpg', 'jpeg', 'png']:
         return True
     return False
 
@@ -29,7 +29,7 @@ def copy_file(source, destination):
     mod_time = os.path.getmtime(source)
     acc_time = os.path.getatime(source)
     os.utime(destination, (acc_time, mod_time))
-
+    os.chmod(destination, os.stat(source).st_mode)
 
 
 def recursive_mkdir(dir_path):
